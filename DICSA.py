@@ -1,4 +1,3 @@
-
 def menu():
     print("============================================")
     print("Welcome to Electronic Services & Protection:")
@@ -30,6 +29,19 @@ def menu():
 def DisplayList():
     #placeholder
     print("1")
+    print("Yes, we have the following service(s):")
+    ListofService = {"Firewall service":1.2, "Security Ops Center":4.2, "Hot Site":8.5, "Data Protection":10.0}
+    AddService(ListofService)
+
+def AddService(ListofService):
+    count =0
+
+    for service, price in ListofService.items():
+        count= count+1
+        print('{}. {:20}:\t${:.1f}k/year'.format(count, service, price))
+     
+    print("Enter the service 1-4 that you would like to add, or 0 to stop: ")
+    #Add the service function
 
 def Search():
     #placeholder
@@ -42,7 +54,5 @@ def DisplayAdded():
 def Payment():
     #placeholder
     print("4")
-
-
 
 menu()
