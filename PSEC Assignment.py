@@ -35,6 +35,36 @@ def DisplayList():
     print("3. Hot Site            :          $8.5k/year")
     print("4. Data Protection     :          $10.0k/year")
     print("Enter the service 1-4 that you would like to add, or 0 to stop: ")
+    while True:
+        print("\t1. Display Our List of Services\n\t2. Search for service\n\t3. Display added services\n\t4. Payment\n\t5. Exit ESP\n\n")
+
+        try:
+            value = input("\tPlease input your choice of action (ENTER to exit):")
+            val = int(value)
+            if val == 1:
+                Firewallservice()
+            elif val == 2:
+                SOC()
+            elif val == 3:
+                HotSite()
+            elif val == 4:
+                DataProtection()
+                break
+    def Firewallservice():
+    #placeholder
+    print("You have added Firewall service into your cart")
+
+    def SOC():
+    #placeholder
+    print("You have added Security Ops Center service into your cart")
+    
+    def HotSite():
+    #placeholder
+    print("You have added Hot Site service into your cart")
+    
+    def DataProtection():
+    #placeholder
+    print("You have added Data Protection service into your cart")
 
 def Search():
     #placeholder
