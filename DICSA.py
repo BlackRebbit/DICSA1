@@ -44,15 +44,14 @@ def AdminLogin():
     #username - admin
     #password - 12345
     username = "YWRtaW4=".encode() #encode to byte form
-    passwd1 = "8342d2719fa5821c254d6484cfc0716fc1e01b8e290ea575187762fc" #hardcoded admin password
-    passwd2 = "428d14bd293db60510a7d17e09a714d8aec70c6f5e430a966c499e3d1ad3dede7feb2e32"
+    passwd1 = "cd20c650e3f7c6bec196391514d2a86bf7a125e8ee1e7bce5aeae184e73e7dbd94b2" #hardcoded admin password
+    passwd2 = "9e9c0ba43df40017456c0b51b19279c156ad665964ed9efe628d14142aae"
     name = input("Username: ")
     
     key = getpass.getpass("Password: ") #get password
-    hash=hashlib.sha512(b'key') #hash with sha512
+    hash=hashlib.sha512(key.encode()) #hash with sha512
     hash.update(b'salt') #hash with salt
     finalkey = hash.hexdigest()
-
     if ((finalkey == passwd1+passwd2) and base64.b64encode(name.encode()) == username): #Base64 is used to hide the username
         AdminMain()
     else:
@@ -119,7 +118,7 @@ def ModifyService(ListofService):
             
             for service,price in ListofService.items():
                 if InputService in service:
-                    Find = True
+                    Find = True #if found, change to yes
                     ServiceName = service
                     ServicePrice = price
 
@@ -138,8 +137,8 @@ def ModifyService(ListofService):
                                 value = input("What is the new service name? ")
                                 confirm = input("Are you sure you want to change the service name from {} to {}? (Y/N) ".format(ServiceName,value))
                                 if confirm.lower() == "y":
-                                    ListofService[value] = ListofService[ServiceName]
-                                    ListofService.pop(ServiceName)
+                                    ListofService[value] = ListofService[ServiceName] #copy the old value to new service
+                                    ListofService.pop(ServiceName) #remove the old service
                                     print("The new service name is {}.\n".format(value))
                                     break
                                 elif confirm.lower() == "n":
@@ -155,7 +154,7 @@ def ModifyService(ListofService):
                                     val = float(value)
                                     confirm = input("Are you sure you want to change the service price from {} to {}? (Y/N) ".format(ServicePrice,value))
                                     if confirm.lower() == "y":
-                                        ListofService.update({ServiceName:val})
+                                        ListofService.update({ServiceName:val}) #update the service price if yes
                                         print("The new price has changed to {}".format(value))
                                         break
                                     elif confirm.lower() == "n":
@@ -180,6 +179,7 @@ def ModifyService(ListofService):
                         print("Invalid input, try again.")
             else:
                 print("Invalid input, try again.")
+
 def RemoveService(ListofService):
     while True:
         count=0
