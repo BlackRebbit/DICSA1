@@ -90,44 +90,49 @@ def DisplayAdded(UserCart):
         print("You have not add any service.")
 
     else: #else display the added services from the user cart
-        count=0
-        print("Services you have added today:")
-        print("Index\t|\tService{:13}|\tPrice".format(""))
-        for items in UserCart:
-            count=count+1
-            print("{}\t|\t{:20}|\t${:.1f}/year".format(count,items[0],items[1]))
-        print("\n1. Remove added service from cart")
-        print("2. Back to menu")
+        while True:
+            count=0
+            print("Services you have added today:")
+            print("Index\t|\tService{:13}|\tPrice".format(""))
+            for items in UserCart:
+                count=count+1
+                print("{}\t|\t{:20}|\t${:.1f}/year".format(count,items[0],items[1]))
+            print("\n1. Remove added service from cart")
+            print("2. Back to menu")
+        
+            try:
+                value = input("Please input your choice of action: ")
+                val = int(value)
 
-        try:
-            value = input("Please input your choice of action: ")
-            val = int(value)
-            
-            if val == 1:
-                while True:
-                    value = input("\nWhich service could you like to remove(Enter the index number), or 0 to stop:")
+                if val == 1: #Ask user which service they would like to remove
+
+                    value = input("\nWhich service would you like to remove(Enter the index number), or 0 to stop:")
                     val = int(value)
-                    if val == 0:
-                        break
-                        main(UserCart)
-                    elif ((val <=0) or (val > count)):
-                        print("Invalid input, please try again.\n")
-                    else:
-                        value = input("Are you sure you want to remove {}?".format(UserCart[val-1][0]))
-                        if value.lower() == 'y':
-                            print("{} has successfully removed from cart\n".format(UserCart[val-1][0]))
-                            UserCart.pop(val-1)
-                            DisplayAdded(UserCart)
-            elif val == 2:
-                print("Back to menu..")
-                main(UserCart)
-            else:
-                print("Invalid inpuit, please try again. \n")
 
-        except ValueError as e:
-            print("Invalid input, try again\n")
-        except Exception as e:
-            print(e)
+                    if val == 0: #break back to menu
+                        break
+                    elif ((val <=0) or (val > count)): #invalid input
+                        print("Invalid input, please try again.\n")
+                    else: #Ask user if confirm to remove that service, if yes then remove from cart else break back to menu
+                        value = input("Are you sure you want to remove {}(Y/N)?".format(UserCart[val-1][0]))
+                        if value.lower() == 'y':
+                            print("{} has successfully removed from cart".format(UserCart[val-1][0]))
+                            UserCart.pop(val-1)
+                            
+                        elif value.lower() == 'n':
+                            break
+                        else:
+                            print("Invalid input, please try again. \n")
+                elif val == 2:
+                    print("Back to menu..")
+                    break
+                else:
+                    print("Invalid input, please try again. \n")
+
+            except ValueError as e:
+                print("Invalid input, try again\n")
+            except Exception as e:
+                print(e)
 
 def Payment(UserCart):
     if len(UserCart) <=0: #Check if User cart is empty
