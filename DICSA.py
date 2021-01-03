@@ -92,7 +92,7 @@ def AddNewService(ListofService):
             value = input("Are you sure you want to add this service to the list? (Y/N) ")
             if value.lower() == 'y':
                 print("Service \"{}\" added to the list.".format(service))
-                ListofService.update({service:price_float})
+                ListofService.update({service:price_float}) #add new service
                 break
             elif value.lower() =='n':
                 print("The service is not added to the list.")
@@ -114,11 +114,11 @@ def ModifyService(ListofService):
         if InputService.lower() == "cancel":
                     break
         else:
-            Find = False
+            Find = False #default find = false
             
             for service,price in ListofService.items():
                 if InputService in service:
-                    Find = True #if found, change to yes
+                    Find = True #if found, change to true
                     ServiceName = service
                     ServicePrice = price
 
