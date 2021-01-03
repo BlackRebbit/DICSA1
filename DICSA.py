@@ -52,7 +52,7 @@ def AddService(ListofService, UserCart):
             else:
                 print("You have added \"{}\" to the cart.\n".format(DataList[val-1][0]))
                 UserCart.append(DataList[val-1])
-                print(UserCart)
+                
         except Exception as e:
                 print(e)
         
