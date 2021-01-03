@@ -27,8 +27,6 @@ def menu():
             print(e)
 
 def DisplayList():
-    #placeholder
-    print("1")
     print("Yes, we have the following service(s):")
     ListofService = {"Firewall service":1.2, "Security Ops Center":4.2, "Hot Site":8.5, "Data Protection":10.0}
     AddService(ListofService)
