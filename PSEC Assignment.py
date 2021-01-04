@@ -1,27 +1,35 @@
-def menu():
+import sys
+def main():
+    
     print("============================================")
     print("Welcome to Electronic Services & Protection:")
-    print("============================================\n\n")
+    print("============================================\n")
     while True:
-        print("\t1. Display Our List of Services\n\t2. Search for service\n\t3. Display added services\n\t4. Payment\n\t5. Exit ESP\n\n")
+        print("\n\t1. Display Our List of Services\n\t2. Search for service\n\t3. Display added services\n\t4. Payment\n\t5. Exit ESP\n\n")
 
         try:
             value = input("\tPlease input your choice of action (ENTER to exit):")
             val = int(value)
-            if val == 1:
+
+            #using if else statement to select function
+            if val == 1: #Display List of Services
                 DisplayList()
-            elif val == 2:
+                sys.exit()
+            elif val == 2: #Search for Service
                 Search()
-            elif val == 3:
+            elif val == 3: #Display added services
                 DisplayAdded()
-            elif val == 4:
+            elif val == 4: #Payment
                 Payment()
-            elif val == 5:
-                break
+            elif val == 5:#Exit
+                print("Thank you for using ESP.")
+                sys.exit()
+
         except ValueError as e:
-            if value == '':
-                break
-            else:
+            if value == '': #check for ENTER
+                print("Thank you for using ESP.")
+                sys.exit()
+            else: #any other input are invalid
                 print("Invalid input, try again")
         except Exception as e:
             print(e)
@@ -49,21 +57,4 @@ def Payment():
     #placeholder
     print("4")
 
-def Firewallservice():
-    #placeholder
-    print("You have added Firewall service into your cart")
-
-def SOC():
-    #placeholder
-    print("You have added Security Ops Center service into your cart")
-    
-def HotSite():
-    #placeholder
-    print("You have added Hot Site service into your cart")
-    
-def DataProtection():
-    #placeholder
-    print("You have added Data Protection service into your cart")
-
-
-menu()
+main()
